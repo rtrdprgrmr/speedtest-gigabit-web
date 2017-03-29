@@ -15,4 +15,4 @@ speedtest-gigabit-client upload http://localhost:8765/
 speedtest-gigabit-client websocket_upload http://localhost:8765/
 ```
 
-OR open http://localhost:8765/ in browser. (upload is slower)
+OR open http://localhost:8765/ in browser. (google chrome is recommended)

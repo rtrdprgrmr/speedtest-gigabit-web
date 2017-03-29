@@ -1,6 +1,6 @@
 {
     "name": "speedtest-gigabit-web",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "speedtest for web download/upload in gigabit bandwidth",
     "homepage": "http://github.com/rdrdprgrmr/speedtest-gigabit-web",
     "author": "<rtrdprgrmr@yahoo.co.jp>",

@@ -103,7 +103,7 @@ function handle_download(req, res) {
 function upload() {
     var maxbytes = 1000000000; // about 1GB
     var maxtime = 5000; // about 5sec
-    var buf = createData(100000); // about 100KB
+    var buf = new Blob([createData(1000000)]); // about 1MB
 
     console.log("uploading");
     var begin = Date.now();
@@ -120,8 +120,8 @@ function upload() {
         xhr.addEventListener('load', function() {
             if (finished) return;
             var l = Number(xhr.responseText);
-            if (l != buf.length) console.error("assertEquals", l, buf.length);
-            transferred += buf.length;
+            if (l != buf.size) console.error("assertEquals", l, buf.size);
+            transferred += buf.size;
             var now = Date.now();
             var elapsed = now - begin;
             if (transferred >= maxbytes || elapsed >= maxtime) {
@@ -155,7 +155,7 @@ function handle_upload(req, res) {
 function websocket_upload() {
     var maxbytes = 1000000000; // about 1GB
     var maxtime = 5000; // about 5sec
-    var buf = createData(100000); // about 100KB
+    var buf = new Blob([createData(1000000)]); // about 1MB
 
     console.log("uploading via websocket");
     var begin = Date.now();
@@ -170,7 +170,7 @@ function websocket_upload() {
     });
     socket.addEventListener('message', function(event) {
         var l = Number(event.data);
-        if (l != buf.length) console.error("assertEquals", l, buf.length);
+        if (l != buf.size) console.error("assertEquals", l, buf.size);
         transferred += l;
         var now = Date.now();
         var elapsed = now - begin;
