@@ -1,0 +1,30 @@
+{
+    "name": "speedtest-gigabit-web",
+    "version": "0.0.1",
+    "description": "speedtest for web download/upload in gigabit bandwidth",
+    "homepage": "http://github.com/rdrdprgrmr/speedtest-gigabit-web",
+    "author": "<rtrdprgrmr@yahoo.co.jp>",
+    "license": "MIT",
+    "keywords": [
+        "speedtest",
+        "gigabit",
+        "Node.js",
+        "benchmark"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rtrdprgrmr/speedtest-gigabit-web.git"
+    },
+    "bugs": {
+        "url": "https://github.com/rtrdprgrmr/speedtest-gigabit-web/issues"
+    },
+    "engines": {
+        "node": ">= 4.3.0"
+    },
+    "main": "server.js",
+    "dependencies": {
+        "ws": ">= 2.0.0"
+    },
+    "devDependencies": {},
+    "directories": {}
+}
