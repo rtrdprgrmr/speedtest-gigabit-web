@@ -18,10 +18,13 @@
     "bugs": {
         "url": "https://github.com/rtrdprgrmr/speedtest-gigabit-web/issues"
     },
+    "bin": {
+        "speedtest-gigabit-server": "./server.js",
+        "speedtest-gigabit-client": "./client.js"
+    },
     "engines": {
         "node": ">= 4.3.0"
     },
-    "main": "server.js",
     "dependencies": {
         "ws": ">= 2.0.0"
     },

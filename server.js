@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 Copyright (c) 2017 rtrdprgrmr
 
@@ -61,7 +63,8 @@ function download() {
         }
     });
     xhr.addEventListener('load', function() {
-        var elapsed = Date.now() - begin;
+        var now = Date.now();
+        var elapsed = now - begin;
         var bits = xhr.response.size * 8;
         console.log("elapsed", elapsed, "msec");
         console.log("transferred", bits, "bits");
@@ -83,7 +86,8 @@ function handle_download(req, res) {
         while (true) {
             var more = res.write(buf);
             transferred += buf.length;
-            var elapsed = Date.now() - begin;
+            var now = Date.now();
+            var elapsed = now - begin;
             if (transferred >= maxbytes || elapsed >= maxtime) {
                 res.end();
                 return;
@@ -108,8 +112,6 @@ function upload() {
     var finished = false;
     kick();
     kick();
-    kick();
-    kick();
 
     function kick() {
         var xhr = new XMLHttpRequest();
@@ -122,7 +124,6 @@ function upload() {
             var now = Date.now();
             var elapsed = now - begin;
             if (transferred >= maxbytes || elapsed >= maxtime) {
-                var elapsed = Date.now() - begin;
                 var bits = transferred * 8;
                 console.log("elapsed", elapsed, "msec");
                 console.log("transferred", bits, "bits");
@@ -159,12 +160,10 @@ function websocket_upload() {
     var begin = Date.now();
     var lastprint = begin;
     var transferred = 0;
-    var socket = new WebSocket((location + "upload").replace("http", "ws"));
+    var socket = new WebSocket((location + "upload").replace("http:", "ws:"));
     socket.addEventListener('open', function(event) {
         begin = Date.now();
         lastprint = begin;
-        socket.send(buf);
-        socket.send(buf);
         socket.send(buf);
         socket.send(buf);
     });
@@ -175,7 +174,6 @@ function websocket_upload() {
         var now = Date.now();
         var elapsed = now - begin;
         if (transferred >= maxbytes || elapsed >= maxtime) {
-            var elapsed = Date.now() - begin;
             var bits = transferred * 8;
             console.log("elapsed", elapsed, "msec");
             console.log("transferred", bits, "bits");
@@ -196,9 +194,9 @@ var wss = new WebSocket.Server({
     server
 });
 
-wss.on('connection', function(ws) {
-    ws.on('message', function(message) {
-        ws.send(String(message.length));
+wss.on('connection', function(socket) {
+    socket.on('message', function(message) {
+        socket.send(String(message.length));
     });
 });
 
