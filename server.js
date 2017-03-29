@@ -116,6 +116,7 @@ function upload() {
     function kick() {
         var xhr = new XMLHttpRequest();
         xhr.open('PUT', '/upload');
+        xhr.responseType = 'text';
         xhr.addEventListener('load', function() {
             if (finished) return;
             var l = Number(xhr.responseText);
